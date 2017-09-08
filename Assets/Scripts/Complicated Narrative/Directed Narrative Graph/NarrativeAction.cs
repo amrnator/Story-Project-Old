@@ -80,7 +80,7 @@ public enum AssignmentType {INCREMENT, DECREMENT, SET}
 
 [System.Serializable]
 public class Precondition {
-    //refernce to conditioon in list
+    //refernce to condition in list
     public ConditionList.Condition refrencedCondition;
 
     //specified values
@@ -111,9 +111,39 @@ public class Precondition {
 
         ConditionList.Condition trueCondition = conditionList.conditionList.Find(condFinder);
 
-		if (trueCondition.boolean == boolValue) {
-            return true;
-        }
+		if (trueCondition.conditonType == ConditionList.ConditionType.Boolean) {
+			if (trueCondition.boolean == boolValue) {
+				return true;
+			}
+		}
+
+		if (trueCondition.conditonType == ConditionList.ConditionType.Integer) {
+
+			if (comparisonType == ComparisonType.Equal) {
+
+				if (trueCondition.integer == integerValue) {
+					return true;
+				}
+			
+			}
+
+			if (comparisonType == ComparisonType.LessThan) {
+
+				if (trueCondition.integer < integerValue) {
+					return true;
+				}
+
+			}
+
+			if (comparisonType == ComparisonType.GreaterThan) {
+
+				if (trueCondition.integer > integerValue) {
+					return true;
+				}
+
+			}
+		}
+
 
         return false;
     }

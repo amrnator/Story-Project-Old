@@ -68,7 +68,7 @@ public class NarrativeDelegateEditor : Editor
             SerializedProperty MyListRef = PrecondList.GetArrayElementAtIndex(i);
             SerializedProperty referencedCond = MyListRef.FindPropertyRelative("refrencedCondition");
             SerializedProperty condName = referencedCond.FindPropertyRelative("conditionName");
-            SerializedProperty condValue = MyListRef.FindPropertyRelative("value");
+            SerializedProperty condValue = MyListRef.FindPropertyRelative("boolValue");
 
             // Display the property fields
             EditorGUILayout.BeginHorizontal("box");

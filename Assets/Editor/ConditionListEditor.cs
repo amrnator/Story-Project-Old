@@ -82,7 +82,6 @@ public class CustomListEditor : Editor
 			}
 				
             // Array fields with remove at index
-
             if (GUILayout.Button("Remove This Index (" + i.ToString() + ")"))
             {
                 ThisList.DeleteArrayElementAtIndex(i);

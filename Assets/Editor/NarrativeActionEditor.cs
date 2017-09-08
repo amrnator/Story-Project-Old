@@ -78,7 +78,7 @@ public class NarrativeActionEditor : Editor {
             // Display the property fields
             EditorGUILayout.BeginHorizontal("box");
 
-            EditorGUILayout.LabelField(condName.stringValue);
+			EditorGUILayout.LabelField(condName.stringValue);
 
 			//change what values can be changed depending on type
 			if (t.preconditions [i].refrencedCondition.conditonType == global::ConditionList.ConditionType.Boolean) {
@@ -108,7 +108,8 @@ public class NarrativeActionEditor : Editor {
         EditorGUILayout.Space();
         EditorGUILayout.Space();
         
-        //post conditions list
+        //POST CONDITIONS
+
         EditorGUILayout.LabelField("Postconditions", EditorStyles.boldLabel);
         EditorGUILayout.LabelField("Define the Postconditions of this action");
 
@@ -140,15 +141,31 @@ public class NarrativeActionEditor : Editor {
             SerializedProperty condName = referencedCond.FindPropertyRelative("conditionName");
 			SerializedProperty boolCondValue = MyListRef.FindPropertyRelative("boolValue");
 			SerializedProperty intCondValue = MyListRef.FindPropertyRelative("integerValue");
+			SerializedProperty asngType = MyListRef.FindPropertyRelative("assignmentType");
 
             // Display the property fields
             EditorGUILayout.BeginHorizontal("box");
 
             EditorGUILayout.LabelField(condName.stringValue);
 
+			//change what values can be changed depending on type
+			if (t.postConditions [i].refrencedCondition.conditonType == global::ConditionList.ConditionType.Boolean) {
+				//if its a bool
+				t.postConditions[i].boolValue = EditorGUILayout.Toggle(boolCondValue.boolValue);
+			} else {
+				//its an int
 
+				EditorGUILayout.BeginVertical ();
 
-			t.postConditions[i].boolValue = EditorGUILayout.Toggle(boolCondValue.boolValue);
+				EditorGUILayout.PropertyField (asngType);
+
+				if (t.postConditions [i].assignmentType == AssignmentType.SET) {
+					t.postConditions[i].integerValue = EditorGUILayout.IntField (intCondValue.intValue);
+				}
+
+				EditorGUILayout.EndVertical ();
+
+			}
 
             if (GUILayout.Button("Remove"))
             {
