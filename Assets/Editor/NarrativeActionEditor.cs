@@ -16,6 +16,7 @@ public class NarrativeActionEditor : Editor {
 
     int precondChoice;
     int postcondChoice;
+	int preCondIntegerValue;
 
     void OnEnable()
     {
@@ -70,14 +71,26 @@ public class NarrativeActionEditor : Editor {
             SerializedProperty MyListRef = PrecondList.GetArrayElementAtIndex(i);
             SerializedProperty referencedCond = MyListRef.FindPropertyRelative("refrencedCondition");
             SerializedProperty condName = referencedCond.FindPropertyRelative("conditionName");
-            SerializedProperty condValue = MyListRef.FindPropertyRelative("value");
+			SerializedProperty condBoolValue = MyListRef.FindPropertyRelative("boolValue");
+			SerializedProperty condintValue = MyListRef.FindPropertyRelative("integerValue");
+			SerializedProperty compType = MyListRef.FindPropertyRelative("comparisonType");
 
             // Display the property fields
             EditorGUILayout.BeginHorizontal("box");
 
             EditorGUILayout.LabelField(condName.stringValue);
 
-            t.preconditions[i].value = EditorGUILayout.Toggle(condValue.boolValue);
+			//change what values can be changed depending on type
+			if (t.preconditions [i].refrencedCondition.conditonType == global::ConditionList.ConditionType.Boolean) {
+				//if its a bool
+				t.preconditions [i].boolValue = EditorGUILayout.Toggle (condBoolValue.boolValue);
+			} else {
+				//its an int
+				GUILayout.Label("Integer Value");
+				t.preconditions [i].integerValue = EditorGUILayout.IntField(condintValue.intValue);
+
+				EditorGUILayout.PropertyField (compType);
+			}
 
             if (GUILayout.Button("Remove"))
             {
@@ -125,14 +138,17 @@ public class NarrativeActionEditor : Editor {
             SerializedProperty MyListRef = PostcondList.GetArrayElementAtIndex(i);
             SerializedProperty referencedCond = MyListRef.FindPropertyRelative("refrencedCondition");
             SerializedProperty condName = referencedCond.FindPropertyRelative("conditionName");
-            SerializedProperty condValue = MyListRef.FindPropertyRelative("value");
+			SerializedProperty boolCondValue = MyListRef.FindPropertyRelative("boolValue");
+			SerializedProperty intCondValue = MyListRef.FindPropertyRelative("integerValue");
 
             // Display the property fields
             EditorGUILayout.BeginHorizontal("box");
 
             EditorGUILayout.LabelField(condName.stringValue);
 
-            t.postConditions[i].value = EditorGUILayout.Toggle(condValue.boolValue);
+
+
+			t.postConditions[i].boolValue = EditorGUILayout.Toggle(boolCondValue.boolValue);
 
             if (GUILayout.Button("Remove"))
             {

@@ -75,7 +75,7 @@ public class NarrativeDelegateEditor : Editor
 
             EditorGUILayout.LabelField(condName.stringValue);
 
-            t.preconditions[i].value = EditorGUILayout.Toggle(condValue.boolValue);
+			t.preconditions[i].boolValue = EditorGUILayout.Toggle(condValue.boolValue);
 
             if (GUILayout.Button("Remove"))
             {

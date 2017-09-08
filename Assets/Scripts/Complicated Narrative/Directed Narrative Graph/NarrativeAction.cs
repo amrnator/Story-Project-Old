@@ -74,13 +74,22 @@ public class NarrativeAction : NarrativeEvent {
     }
 }
 
+public enum ComparisonType {LessThan, GreaterThan, Equal}
+
+public enum AssignmentType {INCREMENT, DECREMENT, SET}
+
 [System.Serializable]
 public class Precondition {
     //refernce to conditioon in list
     public ConditionList.Condition refrencedCondition;
 
-    //specified value
-    public bool value;
+    //specified values
+    public bool boolValue;
+
+	public int integerValue;
+
+	//specified comparison
+	public ComparisonType comparisonType;
 
     public ConditionList conditionList;
 
@@ -102,7 +111,7 @@ public class Precondition {
 
         ConditionList.Condition trueCondition = conditionList.conditionList.Find(condFinder);
 
-        if (trueCondition.boolean == value) {
+		if (trueCondition.boolean == boolValue) {
             return true;
         }
 
@@ -117,7 +126,12 @@ public class Postcondition  {
 
     ConditionList.Condition trueCondition;
 
-    public bool value;
+    public bool boolValue;
+
+	public int integerValue;
+
+	//specified assignment
+	public AssignmentType assignmentType;
 
     public ConditionList conditionList;
 
@@ -126,6 +140,8 @@ public class Postcondition  {
         refrencedCondition = condition;
 
         conditionList = glovalConditionList;
+
+		assignmentType = AssignmentType.INCREMENT;
     }
 
     void Start()
@@ -143,7 +159,24 @@ public class Postcondition  {
 
         trueCondition = conditionList.conditionList.Find(condFinder);
 
-        trueCondition.boolean = value;
+		//if its a bool, assign specified bool
+		if (trueCondition.conditonType == ConditionList.ConditionType.Boolean) {
+			trueCondition.boolean = boolValue;
+		}
+
+		if (trueCondition.conditonType == ConditionList.ConditionType.Integer) {
+
+			if (assignmentType == AssignmentType.INCREMENT) {
+				trueCondition.integer++;
+			}
+			if (assignmentType == AssignmentType.DECREMENT) {
+				trueCondition.integer--;
+			}
+			if (assignmentType == AssignmentType.SET) {
+				trueCondition.integer = this.integerValue;
+			}
+		}
+
     }
 }
 

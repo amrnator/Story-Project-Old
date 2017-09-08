@@ -50,7 +50,7 @@ public class CustomListEditor : Editor
         EditorGUILayout.Space();
         EditorGUILayout.Space();
 
-        //Or add a new item to the List<> with a button
+        //Or add a new Condition to the List<> with a button
         if (GUILayout.Button("Add New"))
         {
             t.conditionList.Add(new ConditionList.Condition());
@@ -60,7 +60,6 @@ public class CustomListEditor : Editor
         EditorGUILayout.Space();
 
         //Display our list to the inspector window
-
         for (int i = 0; i < ThisList.arraySize; i++)
         {
         
@@ -73,10 +72,15 @@ public class CustomListEditor : Editor
             // Display the property fields
 
             EditorGUILayout.PropertyField(MyConditionName);
-            EditorGUILayout.PropertyField(Mybool);
-            EditorGUILayout.PropertyField(MyInt);
-            EditorGUILayout.PropertyField(Myenum);
+			EditorGUILayout.PropertyField(Myenum);
 
+			//display property field depending on type
+			if (Myenum.enumValueIndex == (int)ConditionList.ConditionType.Boolean) {
+				EditorGUILayout.PropertyField (Mybool);
+			} else {
+				EditorGUILayout.PropertyField(MyInt);
+			}
+				
             // Array fields with remove at index
 
             if (GUILayout.Button("Remove This Index (" + i.ToString() + ")"))
