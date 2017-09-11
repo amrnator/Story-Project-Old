@@ -123,7 +123,7 @@ public class NarritoveNodeEditor : Editor
                 EditorGUILayout.LabelField(condName.stringValue);
 
                 //t.postConditions[i].value = EditorGUILayout.Toggle(condValue.boolValue);
-                t.transitionStates[i].transitionConditions[z].value = EditorGUILayout.Toggle(condValue.boolValue);
+				t.transitionStates[i].transitionConditions[z].boolValue = EditorGUILayout.Toggle(condValue.boolValue);
 
                 if (GUILayout.Button("Remove Condition"))
                 {

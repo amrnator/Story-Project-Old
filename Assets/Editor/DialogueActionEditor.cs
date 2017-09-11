@@ -78,7 +78,7 @@ public class DialogueActionEditor : Editor {
 
 			EditorGUILayout.LabelField(condName.stringValue);
 
-			t.preconditions[i].value = EditorGUILayout.Toggle(condValue.boolValue);
+			t.preconditions[i].boolValue = EditorGUILayout.Toggle(condValue.boolValue);
 
 			if (GUILayout.Button("Remove"))
 			{
@@ -132,7 +132,7 @@ public class DialogueActionEditor : Editor {
 
 			EditorGUILayout.LabelField(condName.stringValue);
 
-			t.postConditions[i].value = EditorGUILayout.Toggle(condValue.boolValue);
+			t.postConditions[i].boolValue = EditorGUILayout.Toggle(condValue.boolValue);
 
 			if (GUILayout.Button("Remove"))
 			{

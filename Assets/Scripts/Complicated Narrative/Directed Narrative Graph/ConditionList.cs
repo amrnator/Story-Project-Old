@@ -21,9 +21,13 @@ public class ConditionList : MonoBehaviour {
         {
             throw new NotImplementedException();
         }
+
+		public Condition(){
+			conditonType = ConditionType.Boolean;
+		}
     }
 
-    public enum ConditionType { Integer, Boolean}
+    public enum ConditionType {Integer, Boolean}
 
     public List<Condition> conditionList = new List<Condition>(1);
 
