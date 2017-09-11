@@ -15,10 +15,15 @@ public class PlayerController : MonoBehaviour {
     PlayerActions playerActions;      // Reference to our motor
     Camera cam;             // Reference to our camera
 
+	PlayerBehavior playerBehavior;
+
+	bool isExploring = false;
+
     // Get references
     void Start()
     {
         playerActions = GetComponent<PlayerActions>();
+		playerBehavior = GetComponent<PlayerBehavior> ();
         cam = Camera.main;
     }
 
@@ -36,7 +41,7 @@ public class PlayerController : MonoBehaviour {
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            // If we hit
+            // If we hit an interaction mask
             if (Physics.Raycast(ray, out hit, 100f, interactionMask))
             {
 				//set focus of object
@@ -70,5 +75,17 @@ public class PlayerController : MonoBehaviour {
         }
 
     }
+
+	//toggle explore
+	void OnMouseDown()
+	{
+		if (isExploring) {
+			playerBehavior.PlayerCommandStop ();
+			isExploring = false;
+		} else {
+			playerBehavior.PlayerCommandExplore ();
+			isExploring = true;
+		}
+	}
 
 }
