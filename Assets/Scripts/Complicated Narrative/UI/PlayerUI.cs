@@ -9,8 +9,12 @@ public class PlayerUI : MonoBehaviour {
 
 	public RectTransform interactionButtonPrefab;
 
+	public Animator animator;
+
 	//adds buttons to the interaction UI panel, based on the actions of the object
 	public void addInteractions(List<NarrativeEvent> actions){
+
+		print ("add interactions");
 
 		foreach (NarrativeEvent action in actions) {
 
@@ -22,6 +26,8 @@ public class PlayerUI : MonoBehaviour {
 
 			LayoutRebuilder.MarkLayoutForRebuild (interactionUI);
 		}
+
+		animator.SetBool ("isOpen", true);
 
 	}
 
@@ -38,6 +44,8 @@ public class PlayerUI : MonoBehaviour {
 
 			LayoutRebuilder.MarkLayoutForRebuild (interactionUI);
 		}
+
+		animator.SetBool ("isOpen", false);
 
 	}
 }

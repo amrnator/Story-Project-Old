@@ -14,6 +14,8 @@ public class DialogueManager : MonoBehaviour {
 
 	public Animator animator;
 
+	public Animator interactionAnimator;
+
 	void Start () {
 		sentences = new Queue<string> ();
 	}
@@ -21,6 +23,8 @@ public class DialogueManager : MonoBehaviour {
 	public void StartDialogue(Dialogue dialog)
 	{
 		animator.SetBool ("isOpen", true);
+
+		interactionAnimator.SetBool ("isOpen", false);
 
 		print ("Starting Convo with: " + dialog.name);
 
@@ -64,6 +68,7 @@ public class DialogueManager : MonoBehaviour {
 
 	void EndDialogue(){
 		animator.SetBool ("isOpen", false);
+		interactionAnimator.SetBool ("isOpen", true);
 
 		print ("Convo over");
 	}

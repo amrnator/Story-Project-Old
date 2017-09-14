@@ -74,7 +74,18 @@ public class PlayerController : MonoBehaviour {
             focus.OnFocused(transform);
         }
 
+		isExploring = false;
+
     }
+
+	//defoucus for when we start exploring.
+	void clearFocus(){
+		
+		if (focus != null)
+		{
+			focus.OnDefocused();
+		}
+	}
 
 	//toggle explore
 	void OnMouseDown()
@@ -84,6 +95,7 @@ public class PlayerController : MonoBehaviour {
 			isExploring = false;
 		} else {
 			playerBehavior.PlayerCommandExplore ();
+			clearFocus ();
 			isExploring = true;
 		}
 	}
