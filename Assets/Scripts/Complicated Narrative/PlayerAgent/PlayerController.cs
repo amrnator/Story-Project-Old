@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	//toggle explore
-	void OnMouseDown()
+	public void ToggleExplore()
 	{
 		if (isExploring) {
 			playerBehavior.PlayerCommandStop ();

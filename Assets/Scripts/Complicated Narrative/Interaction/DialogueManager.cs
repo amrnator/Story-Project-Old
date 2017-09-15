@@ -16,15 +16,18 @@ public class DialogueManager : MonoBehaviour {
 
 	public Animator interactionAnimator;
 
+	public Animator gameLogAnimator;
+
 	void Start () {
 		sentences = new Queue<string> ();
 	}
 
 	public void StartDialogue(Dialogue dialog)
 	{
+		//open and close appropriate UI
 		animator.SetBool ("isOpen", true);
-
 		interactionAnimator.SetBool ("isOpen", false);
+		gameLogAnimator.SetBool ("isOpen", false);
 
 		print ("Starting Convo with: " + dialog.name);
 
@@ -67,8 +70,10 @@ public class DialogueManager : MonoBehaviour {
 
 
 	void EndDialogue(){
+		//open and close appropriate UI elements
 		animator.SetBool ("isOpen", false);
 		interactionAnimator.SetBool ("isOpen", true);
+		gameLogAnimator.SetBool ("isOpen", true);
 
 		print ("Convo over");
 	}
