@@ -135,6 +135,7 @@ public class PlayerBehavior : MonoBehaviour , IHasBehaviorObject{
 
     private RunStatus Behavior_Interact(InteractableObject interact) {
 		print("Interacting");
+		GameLog.Instance.post ("Interacting");
         playerActions.FollowTarget(interact);
         //interact.activate();
         return RunStatus.Success;
