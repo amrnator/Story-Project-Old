@@ -47,12 +47,14 @@ public class PlayerBehavior : MonoBehaviour , IHasBehaviorObject{
 
     public void PlayerCommandExplore() {
         print("Actor is exploring");
+		GameLog.Instance.post ("Actor begins to explore", Color.cyan);
         playerActions.StopFollow();
         StartEvent(Explore());
     }
 
     public void PlayerCommandStop() {
         print("Actor has stopped");
+		GameLog.Instance.post ("Actor stops in his tracks", Color.cyan);
         StartEvent(PlayerBehavior_StopFollow());
     }
 
@@ -135,7 +137,7 @@ public class PlayerBehavior : MonoBehaviour , IHasBehaviorObject{
 
     private RunStatus Behavior_Interact(InteractableObject interact) {
 		print("Interacting");
-		GameLog.Instance.post ("Interacting");
+		GameLog.Instance.post ("The hero finds something", Color.cyan);
         playerActions.FollowTarget(interact);
         //interact.activate();
         return RunStatus.Success;

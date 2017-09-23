@@ -13,11 +13,12 @@ public class GameLog : MonoBehaviour {
 		Instance = this;
 	}
 	
-	public void post(string log){
+	public void post(string log, Color textColor){
 
 		GameObject instancedText = Instantiate (logTextPrefab, this.transform);
 
 		instancedText.GetComponent<TextMeshProUGUI> ().text = log;
+		instancedText.GetComponent<TextMeshProUGUI> ().color = textColor;
 
 	}
 

@@ -6,6 +6,8 @@ public class CameraController : MonoBehaviour {
 
     public float speed;
 
+	Vector3 vectorBefore;
+
 	// Use this for initialization
 	void Start () {
 	}
@@ -16,8 +18,12 @@ public class CameraController : MonoBehaviour {
         var z = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
         var x = Input.GetAxis("Vertical") * Time.deltaTime * speed;
 
+		vectorBefore = new Vector3 (z, x, 0);
+
+		var vector = Quaternion.Euler (30, 45, 0) * vectorBefore;
 
         transform.Rotate(0, 0, 0);
-        transform.Translate(z, 0, x);
+		transform.Translate(vector);
+		//transform.Translate(new Vector3(z,0,x).
     }
 }
