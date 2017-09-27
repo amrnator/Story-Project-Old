@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Dialogue action.
+/// An action that will open a dialogue box and display text when activated
+/// </summary>
 public class DialogueAction : NarrativeEvent {
 
 	public Dialogue dialogue;

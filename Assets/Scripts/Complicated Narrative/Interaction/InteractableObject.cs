@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Interactable object.
+/// A component of an object that the player can interact with. 
+/// Once an Interactable object is focused, it start the inteaction command in the behavior tree.
+/// </summary>
 public class InteractableObject : MonoBehaviour {
 
     public float radius = 3f;
@@ -12,6 +17,7 @@ public class InteractableObject : MonoBehaviour {
 
     PlayerBehavior playerBehavior;
 
+	//list of available actions on this object
 	List<NarrativeEvent> actions;
 
     Transform player;
@@ -37,7 +43,6 @@ public class InteractableObject : MonoBehaviour {
         if (isFocus) {
             float distance = Vector3.Distance(player.position, transform.position);
 			if (distance <= radius && !isClose) {
-                //interact here
 				//add the available actions of this object to the menu
 				UI.addInteractions(actions);
 
@@ -59,11 +64,6 @@ public class InteractableObject : MonoBehaviour {
         player = null;
 		UI.removeInteractions ();
     }
-
-//    public void activate() {
-//        action.action();
-//        print("Object activated");
-//    }
 
     void OnDrawGizmosSelected() {
         Gizmos.color = Color.yellow;

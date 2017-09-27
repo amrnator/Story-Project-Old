@@ -3,30 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+/// <summary>
+/// Narrative action.
+/// A basic action that can be assigned to interactive object. 
+/// has a set of preconditions and post conditions.
+/// when the player activates this action, it checks if the preconditions have been met,
+/// if so, then it changes the conditionlist conditions to match those of the postconditions. 
+/// </summary>
 public class NarrativeAction : NarrativeEvent {
-
-//    public string actionName;
-//    
-//    public ConditionList globalConditionList;
-//
-//    public List<Precondition> preconditions = new List<Precondition>();
-//
-//    public List<Postcondition> postConditions = new List<Postcondition>();
-//
-//    public string[] choices;
-//
-//    NarrativeNode narrativeNode;
-//
-//    //delegate funtions for event handling
-//    public delegate void narrativeUpdate();
-//    public static event narrativeUpdate actionMade;
-//
 
     void Awake() {
         //get the condition list
         globalConditionList = GameObject.FindGameObjectWithTag("NarrativeController").GetComponent<ConditionList>();
 
-        narrativeNode = GameObject.FindGameObjectWithTag("NarrativeController").GetComponent<NarrativeNode>();
+		narrativeNode = globalConditionList.GetComponent<NarrativeNode>();
     }
 
     

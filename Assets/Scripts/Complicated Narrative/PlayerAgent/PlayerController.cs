@@ -3,31 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// Player controller.
+/// Main script that starts player actions, such as explore, stop, and interact.
+/// Mouse and button presses trigger methods in this class, 
+/// and the class then communicates with the PlayerBehavior classes.
+/// Moving foreward I want this class to be the main connection between player input and the actor's behavior tree
+/// </summary>
 public class PlayerController : MonoBehaviour {
 	
     public delegate void OnFocusChanged(InteractableObject newFocus);
     public OnFocusChanged onFocusChangedCallback;
 
-    public InteractableObject focus;  // Our current focus: Item, Enemy etc.
+    public InteractableObject focus;  	// Our current focus: Item, Enemy etc.
 
     public LayerMask interactionMask;   // Everything we can interact with
 
-    PlayerActions playerActions;      // Reference to our motor
-    Camera cam;             // Reference to our camera
+    Camera cam;             			// Reference to our camera
 
-	PlayerBehavior playerBehavior;
+	PlayerBehavior playerBehavior;		//reference to our behavior tree
 
 	bool isExploring = false;
 
-    // Get references
+    
     void Start()
     {
-        playerActions = GetComponent<PlayerActions>();
+		// Get references
 		playerBehavior = GetComponent<PlayerBehavior> ();
         cam = Camera.main;
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -87,7 +92,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	//toggle explore
+	//toggle explore, this method is usually used by buttons
 	public void ToggleExplore()
 	{
 		if (isExploring) {

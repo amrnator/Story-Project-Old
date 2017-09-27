@@ -39,10 +39,6 @@ public class PlayerBehavior : MonoBehaviour , IHasBehaviorObject{
 
     void Start() {
         g_BehaviorObject = new BehaviorObject();
-//
-//		playerActions = GetComponent<PlayerActions> ();
-//
-//		playerNav = GetComponent<PlayerNavigation> ();
     }
 
     public void PlayerCommandExplore() {

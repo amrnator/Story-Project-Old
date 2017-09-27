@@ -115,7 +115,7 @@ public class NarritoveNodeEditor : Editor
                 SerializedProperty MyListRef = transitionConditionList.GetArrayElementAtIndex(z);
                 SerializedProperty referencedCond = MyListRef.FindPropertyRelative("refrencedCondition");
                 SerializedProperty condName = referencedCond.FindPropertyRelative("conditionName");
-                SerializedProperty condValue = MyListRef.FindPropertyRelative("value");
+                SerializedProperty condValue = MyListRef.FindPropertyRelative("boolValue");
 
                 // Display the property fields
                 EditorGUILayout.BeginHorizontal("box");

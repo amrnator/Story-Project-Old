@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Narrative event.
+/// A super class for all narative actions.
+/// Narrative events are basically the affordances of an interactable object.
+/// Essentially the set of actions that the player can take when interacting with something.
+/// These are attached to Interactable objects, and there can be multiple actions per object
+/// </summary>
 [ExecuteInEditMode, System.Serializable]
 public class NarrativeEvent : MonoBehaviour {
 
@@ -16,21 +23,6 @@ public class NarrativeEvent : MonoBehaviour {
 	public string[] choices;
 	[HideInInspector]
 	public NarrativeNode narrativeNode;
-
-//	void Awake() {
-//		//get the condition list
-//		globalConditionList = GameObject.FindGameObjectWithTag("NarrativeController").GetComponent<ConditionList>();
-//
-//		narrativeNode = GameObject.FindGameObjectWithTag("NarrativeController").GetComponent<NarrativeNode>();
-//	}
-//
-//
-//	public void Update()
-//	{
-//		#if UNITY_EDITOR
-//		choices = globalConditionList.ToStringArray();
-//		#endif
-//	}
 
 	public virtual void action (){
 		print ("Whatever");
